@@ -1,0 +1,20 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# gradle files
+build/
+.gradle/
+!gradle-wrapper.jar
+
+# IDEA
+out/
+.idea/
+
+# Elcipse
+bin/
+.project
+.classpath
+.settings/
