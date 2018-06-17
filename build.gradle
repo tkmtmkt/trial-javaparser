@@ -1,9 +1,33 @@
 defaultTasks 'assemble'
 
-group = 'com.github.tkmtmkt'
-version = '1.0-SNAPSHOT'
+group 'com.github.tkmtmkt.study'
+version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+  flatDir {
+    dirs "$rootDir/lib"
+  }
+}
+
+dependencies {
+  //プロダクト用（コンパイル、実行、配布）
+  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'com.github.javaparser:javaparser-core:3.6.9'
+
+  //プロダクト用（実行、配布）
+  runtime 'ch.qos.logback:logback-classic:1.2.3'
+
+  //テスト用（コンパイル、実行）
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.assertj:assertj-core:3.8.0'
+  testCompile 'org.mockito:mockito-core:2.8.9'
+}
+
+mainClassName = 'com.github.tkmtmkt.study.javaparser.Main'
 
 sourceCompatibility = 8
 targetCompatibility = 8
@@ -25,38 +49,4 @@ test {
   testLogging {
     events 'started', 'skipped', 'passed', 'failed'
   }
-}
-
-repositories {
-  flatDir {
-    dirs "$rootDir/lib"
-  }
-}
-
-dependencies {
-  //プロダクト用（コンパイル、実行、配布）
-  compile 'org.slf4j:slf4j-api:1.7.25'
-  compile 'com.github.javaparser:javaparser-core:3.4.0'
-
-  //プロダクト用（実行、配布）
-  runtime 'ch.qos.logback:logback-classic:1.2.3'
-
-  //テスト用（コンパイル、実行）
-  testCompile 'junit:junit:4.12'
-  testCompile 'org.assertj:assertj-core:3.8.0'
-  testCompile 'org.mockito:mockito-core:2.8.9'
-}
-group 'com.github.tkmtmkt.study'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
